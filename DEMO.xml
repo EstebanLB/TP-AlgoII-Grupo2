@@ -1,0 +1,5 @@
+
+
+<motorJuegos>
+	<juego nombre="Ajedrez" class="tp.algoII.JuegoAjedrez" />
+</motorJuegos>
