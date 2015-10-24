@@ -6,6 +6,11 @@ public abstract class Ficha
 	private int coordC;
 	private boolean posicionada;
 	
-	public abstract boolean mover(int f, int c);
+	public void mover(int f, int c)
+	{
+		coordF = f;
+		coordC = c;
+		posicionada = true;
+	}
 	
 }
