@@ -29,5 +29,11 @@ public abstract class Juego
 	{
 			return false;
 	}
+	public boolean estaEmpatado()
+	
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

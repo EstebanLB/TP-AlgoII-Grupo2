@@ -11,8 +11,8 @@ public class Motor
 	{
 		
 		Juego juego = MotorConfig.obtenerJuego();
+		Tablero tablero = MotorConfig.obtenerTablero();
 		
-		Tablero tablero = new Tablero();
 		juego.setTablero(tablero);
 		
 		Jugador jug1 = new Jugador();
@@ -43,6 +43,14 @@ public class Motor
 				while( !jug2.mover() );
 			}
 		}
-		System.out.println( "Juego Terminado. Ganó el" +siguienteJugador);
+		if ( juego.estaEmpatado() )
+		{
+			System.out.println( "Juego terminado en empate" );
+		}
+		else
+		{
+			System.out.println( "Juego terminado. Ganó el" +siguienteJugador);
+		}
+		
 	}
 }
