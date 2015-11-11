@@ -6,11 +6,16 @@ import java.util.Scanner;
 
 public class Jugador
 {
-	private ArrayList<Ficha> fichas = null;
+	//private ArrayList<Ficha> fichas = null;
 	private Juego juego = null;
-	private Tablero tablero = null;
+	private tablero tablero = null;
 	private int x,y = -1;
 	private Ficha ficha = null;
+	private char valor = ' ';
+	
+	public Jugador(char v) {
+		valor = v;
+	}
 	
 	public void setFichas(ArrayList<Ficha> fichas)
 	{
@@ -35,12 +40,12 @@ public class Jugador
 		y = scanner.nextInt();
 		System.out.print( "Columna:" );
 		x = scanner.nextInt();
-		ficha = fichas.get(1);
+		ficha = new Ficha(valor);
 		if (juego.validarMovimiento(ficha, x, y)) 
 		{
 			juego.posicionar(ficha, x, y);
 			System.out.println( "Ficha posicionada en la ubicación (" + +x + "," + +y + ")" );
-			fichas.remove(1);
+			//fichas.remove(1);
 			return true;
 		} else {
 			System.out.println( "Movimiento no válido, intente nuevamente" );

@@ -2,15 +2,11 @@ package TATETI.src;
 
 import java.util.Scanner;
 import java.lang.String;
+import tp.framework.elementos.Ficha;
 
-public class TATETI
-{
-    
-
-	public static void main(String[] args)
-	{	
-		char[][] Tablero = new char[3][3];
-		TATETI.m_inicializar( Tablero );
+public class TATETI	{	
+	private Ficha[][] tablero = new char[3][3];
+		TATETI.m_inicializar( tablero );
 		char ficha = 'O';
 		int x = 0;
 		int y = 0;
@@ -22,7 +18,7 @@ public class TATETI
 		
 		while (fin != true)
 		{
-			TATETI.m_mostrar_tablero( Tablero );
+			TATETI.m_mostrar_tablero( tablero );
 			System.out.println( "Elija el casillero (y,x) " + ficha );
 			mov = scanner.nextLine();
 			posiciones = mov.split(",");;
@@ -30,10 +26,10 @@ public class TATETI
 			y = Integer.parseInt(posiciones[1]);
 			if ( x < 0 || x > 2 || y < 0 || y > 2 )
 				continue;
-			if (Tablero[x][y] == ' ' )
+			if (tablero[x][y] == ' ' )
 			{
 				Tablero[x][y] = ficha;
-				fin = TATETI.m_finalizado( Tablero, ficha);
+				fin = TATETI.m_finalizado( tablero, ficha);
 				if (fin == true)
 					continue;
 				if ( ficha == 'O' )
@@ -68,8 +64,10 @@ public class TATETI
 			System.out.println("---" + "+" + "---" + "+"+"---");
 		}
 	}
-	public static boolean m_finalizado(char tablero[][], char ficha)
-	{
+	public static boolean estaTerminado() {
+		boolean booleano = m_finalizado(Tablero, 'X');
+	}
+	public static boolean m_finalizado(char tablero[][], char ficha)	{
 		boolean fin = false;
 		int i;
 		int j;

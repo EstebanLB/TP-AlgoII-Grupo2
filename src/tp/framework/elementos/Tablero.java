@@ -2,7 +2,7 @@ package tp.framework.elementos;
 
 import java.util.ArrayList;
 
-public class Tablero
+public class tablero
 {
 	/*private Ficha matriz [][];
 	

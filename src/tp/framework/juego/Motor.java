@@ -12,19 +12,20 @@ public class Motor
 		try
 		{
 		Juego juego = MotorConfig.obtenerJuego();
-		Jugador jug1 = new Jugador();
+		
+		Jugador jug1 = new Jugador('X');
 		jug1.setJuego(juego);
 		
-		Jugador jug2 = new Jugador();
+		Jugador jug2 = new Jugador('O');
 		jug2.setJuego(juego);
 		
 		juego.setJugadores(jug1,jug2);
+		
 		//jug1.setTablero(tablero);
 		//jug2.setTablero(tablero);
 		
-		//Revisar esto
-		jug1.setFichas(juego.getFichas());
-		jug2.setFichas(juego.getFichas());
+		//jug1.setFichas(juego.getFichas('X'));
+		//jug2.setFichas(juego.getFichas('O'));
 		
 		String siguienteJugador = "Jugador 1";
 		juego.inicializar();
@@ -44,7 +45,6 @@ public class Motor
 			}
 		}
 		System.out.println( "Juego Terminado. Ganó el" +siguienteJugador);
-
 		
 	}
 		catch(RuntimeException ex)

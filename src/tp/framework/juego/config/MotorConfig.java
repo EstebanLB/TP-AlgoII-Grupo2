@@ -1,7 +1,7 @@
 package tp.framework.juego.config;
 
 import tp.framework.juego.Juego;
-import tp.framework.elementos.Tablero;
+import tp.framework.elementos.tablero;
 import java.lang.reflect.*;
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class MotorConfig
 	    //Se crea un SAXBuilder para poder parsear el archivo
 	    SAXBuilder builder = new SAXBuilder();
 	    File xmlFile = new File( "DEMO.xml" );
-	    try
+	    try 
 	    {
 	        //Se crea el documento a traves del archivo
 	        Document document = (Document) builder.build( xmlFile );
@@ -46,7 +46,6 @@ public class MotorConfig
             columnas = tabla.getAttributeValue("columnas");
             filas = tabla.getAttributeValue("filas");
             
-            
             //System.out.println( "\t"+nombreJuego+"\t\t"+nombreClase+"\t\t");
 
 	    }catch ( IOException io ) {
@@ -56,7 +55,7 @@ public class MotorConfig
 	    }
 	}
 
-	public static Juego obtenerJuego() throws ClassNotFoundException
+	public static Juego obtenerJuego() 
 	{
 		leerConfig();
 		if ( nombre.length() == 0)
@@ -66,17 +65,17 @@ public class MotorConfig
 			Class Clase = Class.forName(clase);			
 			Juego juegoNuevo  = (Juego)Clase.newInstance();
 			juegoNuevo.setNombre(nombre);
-			juegoNuevo.setearTablero( (int)Integer.parseInt(filas,10), (int)Integer.parseInt(columnas,10));
+			juegoNuevo.setearTablero( Integer.parseInt(filas), Integer.parseInt(columnas) );
 			return juegoNuevo;
 		}
-		catch(Exception ex)
+		catch(ClassNotFoundException | InstantiationException | IllegalAccessException ex)
 		{
 			ex.printStackTrace();
 			throw new RuntimeException(ex);
 		}
 	}
 
-	public static Tablero obtenerTablero()
+	public static tablero obtenerTablero()
 	{
 		return null;
 	}

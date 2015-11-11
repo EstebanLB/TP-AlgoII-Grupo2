@@ -6,8 +6,9 @@ import tp.framework.elementos.Ficha;
 import tp.framework.elementos.Jugador;
 
 public abstract class Juego {
-	protected Ficha tablero[][] = null;
+	private Ficha tablero[][] = null;
 	private String nombre = null;
+	
 	public Ficha[][] getTablero() {
 		return tablero;
 	}
@@ -36,8 +37,6 @@ public abstract class Juego {
 		ficha.mover(x, y);
 		tablero[x][y] = ficha;
 	}
-
-	public abstract ArrayList<Ficha> getFichas();
 
 	public abstract boolean estaTerminado();
 
