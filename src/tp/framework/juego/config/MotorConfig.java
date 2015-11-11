@@ -56,15 +56,24 @@ public class MotorConfig
 	    }
 	}
 
-	public static Juego obtenerJuego()
+	public static Juego obtenerJuego() throws ClassNotFoundException
 	{
 		leerConfig();
-		//Juego juegoNuevo = null;
-		Class objeto = Class.forName(nombre);
-		(Juego) juegoNuevo;
-		juegoNuevo.setNombre(nombre);
-		juegoNuevo.setearTablero(Integer.parseInt(filas), Integer.parseInt(columnas));
-		return juegoNuevo;
+		if ( nombre.length() == 0)
+			return null;
+		try
+		{
+			Class Clase = Class.forName(clase);			
+			Juego juegoNuevo  = (Juego)Clase.newInstance();
+			juegoNuevo.setNombre(nombre);
+			juegoNuevo.setearTablero( (int)Integer.parseInt(filas,10), (int)Integer.parseInt(columnas,10));
+			return juegoNuevo;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
 	}
 
 	public static Tablero obtenerTablero()

@@ -22,10 +22,10 @@ public class Jugador
 		this.juego = juego;
 	}
 
-	public void setTablero(Tablero tablero)
+	/*public void setTablero(Tablero tablero)
 	{
 		this.tablero = tablero;
-	}
+	}*/
 
 	public boolean mover()
 	{
@@ -38,7 +38,7 @@ public class Jugador
 		ficha = fichas.get(1);
 		if (juego.validarMovimiento(ficha, x, y)) 
 		{
-			tablero.posicionar(ficha, x, y);
+			juego.posicionar(ficha, x, y);
 			System.out.println( "Ficha posicionada en la ubicación (" + +x + "," + +y + ")" );
 			fichas.remove(1);
 			return true;
