@@ -2,7 +2,6 @@ package tp.framework.juego;
 
 import java.lang.RuntimeException;
 import tp.framework.elementos.Jugador;
-
 import tp.framework.juego.config.MotorConfig;
 
 public class Motor
@@ -13,10 +12,13 @@ public class Motor
 		{
 		Juego juego = MotorConfig.obtenerJuego();
 		
-		Jugador jug1 = new Jugador('X');
+		//if para elejir valor de ficha y jugador		
+		char valor1;
+		Jugador jug1 = new Jugador(valor1);
 		jug1.setJuego(juego);
 		
-		Jugador jug2 = new Jugador('O');
+		char valor2;
+		Jugador jug2 = new Jugador(valor2);
 		jug2.setJuego(juego);
 		
 		juego.setJugadores(jug1,jug2);
@@ -31,7 +33,6 @@ public class Motor
 		juego.inicializar();
 		juego.mostrarTablero();
 		while( !juego.estaTerminado() )
-		
 		{
 			System.out.println( "Turno del Jugador 1" );
 			siguienteJugador = "Jugador 1";
@@ -49,11 +50,6 @@ public class Motor
 	}
 		catch(RuntimeException ex)
 		{
-		}
-		catch(ClassNotFoundException ex)
-		{
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
 		}
 
 	}

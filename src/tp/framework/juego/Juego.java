@@ -1,28 +1,34 @@
 package tp.framework.juego;
 
-import java.util.ArrayList;
-
 import tp.framework.elementos.Ficha;
 import tp.framework.elementos.Jugador;
 
 public abstract class Juego {
-	private Ficha tablero[][] = null;
+	protected Ficha tablero[][] = null;
 	private String nombre = null;
 	
+	public abstract void inicializar();	
+	
+	public void armarTablero(int x, int y) {
+		tablero = new Ficha[x][y];
+	}
+	
+	public void setTablero(Ficha[][] t) {
+		tablero = t;
+	}
+
 	public Ficha[][] getTablero() {
 		return tablero;
 	}
 
-	public void setTablero(Ficha[][] tablero) {
-		this.tablero = tablero;
+	public abstract void mostrarTablero();
+
+	public void setNombre(String n) {
+		nombre = n;
 	}
 
 	public String getNombre() {
 		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	private Jugador jugador1 = null;
@@ -33,20 +39,15 @@ public abstract class Juego {
 		jugador2 = j2;
 	}
 
+	public abstract boolean validarMovimiento(Ficha ficha, int x, int y);
+	
 	public void posicionar(Ficha ficha, int x, int y) {
 		ficha.mover(x, y);
 		tablero[x][y] = ficha;
 	}
-
+	
 	public abstract boolean estaTerminado();
 
 	public abstract boolean estaTerminado(Ficha ficha);
 
-	public abstract boolean validarMovimiento(Ficha ficha, int x, int y);
-
-	public void setearTablero(int x, int y) {
-		this.tablero = new Ficha[x][y];
-	}
-	public abstract void mostrarTablero();
-	public abstract void inicializar();
 }

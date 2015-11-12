@@ -62,10 +62,10 @@ public class MotorConfig
 			return null;
 		try
 		{
-			Class Clase = Class.forName(clase);			
-			Juego juegoNuevo  = (Juego)Clase.newInstance();
+			Class clase = Class.forName(clase);			
+			Juego juegoNuevo  = (Juego)clase.newInstance();
 			juegoNuevo.setNombre(nombre);
-			juegoNuevo.setearTablero( Integer.parseInt(filas), Integer.parseInt(columnas) );
+			juegoNuevo.armarTablero( Integer.parseInt(filas), Integer.parseInt(columnas) );
 			return juegoNuevo;
 		}
 		catch(ClassNotFoundException | InstantiationException | IllegalAccessException ex)
