@@ -66,6 +66,8 @@ public class MotorConfig
 			Juego juegoNuevo  = (Juego)clase.newInstance();
 			juegoNuevo.setNombre(nombre);
 			juegoNuevo.armarTablero( Integer.parseInt(filas), Integer.parseInt(columnas) );
+			juegoNuevo.setFilas(Integer.parseInt(filas));
+			juegoNuevo.setColumnas(Integer.parseInt(columnas));
 			return juegoNuevo;
 		}
 		catch(ClassNotFoundException | InstantiationException | IllegalAccessException ex)
@@ -73,11 +75,6 @@ public class MotorConfig
 			ex.printStackTrace();
 			throw new RuntimeException(ex);
 		}
-	}
-
-	public static tablero obtenerTablero()
-	{
-		return null;
 	}
 
 }

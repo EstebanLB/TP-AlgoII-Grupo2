@@ -9,30 +9,50 @@ public class Jugador
 	private int x,y = -1;
 	private Ficha ficha = null;
 	private char valor = ' ';
+	private String nombre = null;
 	
-	public Jugador(char v){
+	
+	
+	public Jugador(char v, String n){
 		valor = v;
+		nombre = n;
+		ficha = new Ficha(valor);
+	}
+	public char getValor(){
+		return valor;
+	}
+	public String getNombre()
+	{
+		return nombre;
 	}
 	
+	public Ficha getFicha(){
+		return ficha;
+	}
+
+	public void setNombre(String nombre)
+	{
+		this.nombre = nombre;
+	}
+
 	public void setJuego(Juego j){
 		juego = j;
 	}
 
+	@SuppressWarnings("resource")
 	public boolean mover()
 	{
-		System.out.println( "Elija el casillero" );
+		System.out.println( "Elija un casillero del 1 al "+juego.getFilas() );
 		System.out.print( "Fila:" );
 		java.util.Scanner scanner = new Scanner(System.in);
-		y = scanner.nextInt();
+		y = scanner.nextInt()-1;
 		System.out.print( "Columna:" );
-		x = scanner.nextInt();
+		x = scanner.nextInt()-1;
 		
 		ficha = new Ficha(valor);
-		if (juego.validarMovimiento(ficha, x, y)) 
-		{
+		if (juego.validarMovimiento(ficha, x, y)) 		{
 			juego.posicionar(ficha, x, y);
-			System.out.println( "Ficha posicionada en la ubicación (" + +x + "," + +y + ")" );
-			//fichas.remove(1);
+			System.out.println( "Ficha posicionada en la ubicación ("+x+","+y+")" );
 			return true;
 		} else {
 			System.out.println( "Movimiento no válido, intente nuevamente" );

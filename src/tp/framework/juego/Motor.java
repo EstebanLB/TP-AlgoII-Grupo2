@@ -1,7 +1,10 @@
 package tp.framework.juego;
 
 import java.lang.RuntimeException;
+import java.util.Scanner;
+
 import tp.framework.elementos.Jugador;
+import tp.framework.elementos.Ficha;
 import tp.framework.juego.config.MotorConfig;
 
 public class Motor
@@ -12,41 +15,49 @@ public class Motor
 		{
 		Juego juego = MotorConfig.obtenerJuego();
 		
-		//if para elejir valor de ficha y jugador		
-		char valor1;
-		Jugador jug1 = new Jugador(valor1);
+		System.out.println( "Nueva partida de " +juego.getNombre() );
+		
+		System.out.println( "Introduzca el nombre del jugador1" );
+		@SuppressWarnings("resource")
+		java.util.Scanner scanner = new Scanner(System.in);
+		String nombre = scanner.next();
+		System.out.println( "Elija ficha para jugador1" );
+		char valor = scanner.next().charAt(0);
+		Jugador jug1 = new Jugador(valor, nombre);
 		jug1.setJuego(juego);
 		
-		char valor2;
-		Jugador jug2 = new Jugador(valor2);
+		System.out.println( "Introduzca el nombre del jugador2" );
+		nombre = scanner.next();
+		System.out.println( "Elija ficha para jugador2" );
+		valor = scanner.next().charAt(0);
+		Jugador jug2 = new Jugador(valor, nombre);
 		jug2.setJuego(juego);
 		
 		juego.setJugadores(jug1,jug2);
 		
-		//jug1.setTablero(tablero);
-		//jug2.setTablero(tablero);
-		
-		//jug1.setFichas(juego.getFichas('X'));
-		//jug2.setFichas(juego.getFichas('O'));
-		
-		String siguienteJugador = "Jugador 1";
+		String siguienteJugador = jug1.getNombre();
 		juego.inicializar();
 		juego.mostrarTablero();
-		while( !juego.estaTerminado() )
-		{
-			System.out.println( "Turno del Jugador 1" );
-			siguienteJugador = "Jugador 1";
+		int cont = 0;
+				
+		while( !juego.estaTerminado(jug2) || !juego.estaEmpatado(cont) )	{
+			siguienteJugador = jug1.getNombre();
+			System.out.println( "Turno de " +siguienteJugador );
 			while( !jug1.mover() );
-			
-			if( !juego.estaTerminado() )
-			{
-				System.out.println( "Turno del Jugador 2" );
-				siguienteJugador = "Jugador 2";
+			cont++;
+			if( !juego.estaTerminado(jug1) || !juego.estaEmpatado(cont)){
+				siguienteJugador = jug2.getNombre();
+				System.out.println( "Turno de " +siguienteJugador );
 				while( !jug2.mover() );
+				cont++;
 			}
 		}
-		System.out.println( "Juego Terminado. Ganó el" +siguienteJugador);
-		
+		if ( juego.estaEmpatado(cont) )		{
+			System.out.println( "Juego terminado en empate" );
+		}	else	{
+			System.out.println( "Juego terminado. Ganó " +siguienteJugador);
+		}
+				
 	}
 		catch(RuntimeException ex)
 		{

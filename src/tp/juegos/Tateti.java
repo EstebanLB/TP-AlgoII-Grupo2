@@ -1,6 +1,7 @@
 package tp.juegos;
 
 import tp.framework.elementos.Ficha;
+import tp.framework.elementos.Jugador;
 import tp.framework.juego.Juego;
 
 public class Tateti extends Juego
@@ -11,33 +12,33 @@ public class Tateti extends Juego
 		
 	}
 
-	@Override
 	public void inicializar()	{
-		// poner caracteres en blanco para cada casillero
-
+		for (int i=0;i<filas;i++)	{
+			for (int j=0;j<columnas;j++){
+				tablero[i][j] = new Ficha(' ');
+			}
+		}
 	}
 
 	public void mostrarTablero()	{
-		int i;
-		for (i=0;i<3;i++)
+		for (int i=0;i<filas;i++)
 		{
-			System.out.println(" "+tablero[i][0]+ " | "+tablero[i][1]+" | "+tablero[i][2]);
+			System.out.println(" "+tablero[i][0].getValor()+ " | "+tablero[i][1].getValor()+" | "+tablero[i][2].getValor());
 			if (i==0 || i==1)
 			System.out.println("---" + "+" + "---" + "+"+"---");
 		}
 	}
 
-	@Override
 	public boolean validarMovimiento(Ficha ficha, int x, int y)	{
-		boolean flagOcupado = (tablero[x][y].getValor() == ' ');
-		if ( x < 0 || x > 2 || y < 0 || y > 2 );
-		
-		//return ( x < 0 || x > 2 || y < 0 || y > 2 ) || flagOcupado;
+		if ((tablero[x][y].getValor() != ' ') || (x<0) || (x>columnas-1) || (y<0) || (y>filas-1)){
+			return true;
+		}	else {
+			return false;
+		}
 	}
-	public boolean estaTerminado() {
 		
-	}
-	public boolean m_finalizado(char tablero[][], char ficha)
+	public boolean estaTerminado(Jugador jugador) {
+		Ficha ficha = jugador.getFicha(); 
 		boolean fin = false;
 		int i;
 		int j;
@@ -82,14 +83,10 @@ public class Tateti extends Juego
 			
 		}
 			return fin;
-		
 	}
 
-	@Override
-	public boolean estaTerminado()
-	{
-		// TODO Auto-generated method stub
-		return false;
+	public boolean estaEmpatado(int c){
+	boolean bool = (c == filas * columnas);
+	return bool;
 	}
-
 }

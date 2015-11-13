@@ -6,8 +6,27 @@ import tp.framework.elementos.Jugador;
 public abstract class Juego {
 	protected Ficha tablero[][] = null;
 	private String nombre = null;
+	protected int filas;
+	protected int columnas;
 	
 	public abstract void inicializar();	
+	
+
+	public void setFilas(int f)	{
+	filas = f;	
+	}
+	
+	public void setColumnas(int c)	{
+	columnas = c;	
+	}
+	
+	public int getFilas()	{
+	return filas;	
+	}
+	
+	public int getColumnas()	{
+	return columnas;	
+	}
 	
 	public void armarTablero(int x, int y) {
 		tablero = new Ficha[x][y];
@@ -46,8 +65,9 @@ public abstract class Juego {
 		tablero[x][y] = ficha;
 	}
 	
-	public abstract boolean estaTerminado();
+	public abstract boolean estaTerminado(Jugador jugador);
+	
+	public abstract boolean estaEmpatado(int contador);
 
-	public abstract boolean estaTerminado(Ficha ficha);
 
 }
