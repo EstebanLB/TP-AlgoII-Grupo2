@@ -4,7 +4,6 @@ import java.lang.RuntimeException;
 import java.util.Scanner;
 
 import tp.framework.elementos.Jugador;
-import tp.framework.elementos.Ficha;
 import tp.framework.juego.config.MotorConfig;
 
 public class Motor

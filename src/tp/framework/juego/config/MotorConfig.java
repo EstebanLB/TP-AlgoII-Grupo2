@@ -1,7 +1,6 @@
 package tp.framework.juego.config;
 
 import tp.framework.juego.Juego;
-import tp.framework.elementos.tablero;
 import java.lang.reflect.*;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +22,7 @@ public class MotorConfig
 	{
 	    //Se crea un SAXBuilder para poder parsear el archivo
 	    SAXBuilder builder = new SAXBuilder();
-	    File xmlFile = new File( "DEMO.xml" );
+	    File xmlFile = new File( "config.xml" );
 	    try 
 	    {
 	        //Se crea el documento a traves del archivo
