@@ -34,21 +34,29 @@ public class Motor
 		
 		juego.setJugadores(jug1,jug2);
 		
-		String siguienteJugador = jug1.getNombre();
+		Jugador siguienteJugador = jug1;
 		juego.inicializar();
 		juego.mostrarTablero();
 		int cont = 0;
 				
-		while( !juego.estaTerminado(jug2) || !juego.estaEmpatado(cont) )	{
-			siguienteJugador = jug1.getNombre();
-			System.out.println( "Turno de " +siguienteJugador );
+		while( !juego.estaTerminado(jug2) && !juego.estaEmpatado(cont) )	{
+			siguienteJugador = jug1;
+			System.out.println( "Turno de " +siguienteJugador.getNombre() +"(" +siguienteJugador.getValor() +")" );
 			while( !jug1.mover() );
 			cont++;
-			if( !juego.estaTerminado(jug1) || !juego.estaEmpatado(cont)){
-				siguienteJugador = jug2.getNombre();
-				System.out.println( "Turno de " +siguienteJugador );
+			juego.mostrarTablero();
+			if( !juego.estaTerminado(jug1) && !juego.estaEmpatado(cont)){
+				siguienteJugador = jug2;
+				System.out.println( "Turno de " +siguienteJugador.getNombre() +"(" +siguienteJugador.getValor()+")"  );
 				while( !jug2.mover() );
 				cont++;
+				juego.mostrarTablero();
+			}	else	{
+				if ( juego.estaEmpatado(cont) )		{
+					System.out.println( "Juego terminado en empate" );
+				}	else	{
+					System.out.println( "Juego terminado. Ganó " +siguienteJugador.getNombre());
+				}
 			}
 		}
 		if ( juego.estaEmpatado(cont) )		{

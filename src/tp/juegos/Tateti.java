@@ -21,8 +21,7 @@ public class Tateti extends Juego
 	}
 
 	public void mostrarTablero()	{
-		for (int i=0;i<filas;i++)
-		{
+		for (int i=0;i<filas;i++)	{
 			System.out.println(" "+tablero[i][0].getValor()+ " | "+tablero[i][1].getValor()+" | "+tablero[i][2].getValor());
 			if (i==0 || i==1)
 			System.out.println("---" + "+" + "---" + "+"+"---");
@@ -30,7 +29,7 @@ public class Tateti extends Juego
 	}
 
 	public boolean validarMovimiento(Ficha ficha, int x, int y)	{
-		if ((tablero[x][y].getValor() != ' ') || (x<0) || (x>columnas-1) || (y<0) || (y>filas-1)){
+		if ((tablero[x][y].getValor() == ' ') && (x>=0) && (x<columnas) && (y>=0) && (y<filas)){
 			return true;
 		}	else {
 			return false;
@@ -46,7 +45,7 @@ public class Tateti extends Juego
 		{
 			for (j=0;j<3;j++)
 			{
-				if (  tablero[i][j] == ficha )
+				if (  tablero[i][j].getValor() == ficha.getValor() )
 					{fin = true; continue;}
 				else;
 					{fin = false; break;}
@@ -60,7 +59,7 @@ public class Tateti extends Juego
 			{
 				for (i=0;i<3;i++)
 				{
-					if (  tablero[i][j] == ficha )
+					if (  tablero[i][j].getValor() == ficha.getValor() )
 						{fin = true; continue;}
 					else;
 						{fin = false; break;}
@@ -71,14 +70,14 @@ public class Tateti extends Juego
 		}
 		if (fin == false)
 		{
-			if (tablero[0][0] == ficha
-			&& tablero[1][1] == ficha
-			&& tablero[2][2] == ficha )
+			if (tablero[0][0].getValor() == ficha.getValor()
+			&& tablero[1][1].getValor() == ficha.getValor()
+			&& tablero[2][2].getValor() == ficha.getValor() )
 				fin = true;
 			
-			if (tablero[0][2] == ficha
-			&& tablero[1][1] == ficha
-			&& tablero[2][0] == ficha )
+			if (tablero[0][2].getValor() == ficha.getValor()
+			&& tablero[1][1].getValor() == ficha.getValor()
+			&& tablero[2][0].getValor() == ficha.getValor() )
 				fin = true;
 			
 		}

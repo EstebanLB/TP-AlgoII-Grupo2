@@ -61,8 +61,8 @@ public class MotorConfig
 			return null;
 		try
 		{
-			Class clase = Class.forName(clase);			
-			Juego juegoNuevo  = (Juego)clase.newInstance();
+			Class<?> claseC = Class.forName(clase);			
+			Juego juegoNuevo  = (Juego)claseC.newInstance();
 			juegoNuevo.setNombre(nombre);
 			juegoNuevo.armarTablero( Integer.parseInt(filas), Integer.parseInt(columnas) );
 			juegoNuevo.setFilas(Integer.parseInt(filas));

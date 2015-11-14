@@ -45,17 +45,17 @@ public class Jugador
 		System.out.println( "Elija un casillero del 1 al "+juego.getFilas() );
 		System.out.print( "Fila:" );
 		java.util.Scanner scanner = new Scanner(System.in);
-		y = scanner.nextInt()-1;
-		System.out.print( "Columna:" );
 		x = scanner.nextInt()-1;
+		System.out.print( "Columna:" );
+		y = scanner.nextInt()-1;
 		
 		ficha = new Ficha(valor);
 		if (juego.validarMovimiento(ficha, x, y)) 		{
 			juego.posicionar(ficha, x, y);
-			System.out.println( "Ficha posicionada en la ubicación ("+x+","+y+")" );
+			System.out.println( "Ficha posicionada en la ubicación ("+(x+1) +","+(y+1) +")" );
 			return true;
 		} else {
-			System.out.println( "Movimiento no válido, intente nuevamente" );
+			System.out.println( "Movimiento no válido, intente nuevamente");
 			return false;
 		}
 	}
