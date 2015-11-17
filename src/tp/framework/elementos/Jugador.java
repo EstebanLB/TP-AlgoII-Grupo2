@@ -36,11 +36,11 @@ public class Jugador
 	}
 	@SuppressWarnings("resource")
 	public boolean mover()	{
-		System.out.println( "Elija un casillero del 1 al "+juego.getFilas() );
+		System.out.println( "Elija un casillero del 1 al "+juego.getColumnas() );
 		System.out.print( "Columna:" );
 		java.util.Scanner scanner = new Scanner(System.in);
 		y = scanner.nextInt()-1;
-		System.out.println( "Elija un casillero del 1 al "+juego.getColumnas() );
+		System.out.println( "Elija un casillero del 1 al "+juego.getFilas() );
 		System.out.print( "Fila:" );
 		x = scanner.nextInt()-1;
 		
