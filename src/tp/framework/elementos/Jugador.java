@@ -43,11 +43,12 @@ public class Jugador
 	public boolean mover()
 	{
 		System.out.println( "Elija un casillero del 1 al "+juego.getFilas() );
-		System.out.print( "Fila:" );
-		java.util.Scanner scanner = new Scanner(System.in);
-		x = scanner.nextInt()-1;
 		System.out.print( "Columna:" );
+		java.util.Scanner scanner = new Scanner(System.in);
 		y = scanner.nextInt()-1;
+		System.out.println( "Elija un casillero del 1 al "+juego.getColumnas() );
+		System.out.print( "Fila:" );
+		x = scanner.nextInt()-1;
 		
 		ficha = new Ficha(valor);
 		if (juego.validarMovimiento(ficha, x, y)) 		{

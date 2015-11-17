@@ -29,7 +29,7 @@ public class Tateti extends Juego
 	}
 
 	public boolean validarMovimiento(Ficha ficha, int x, int y)	{
-		if ((tablero[x][y].getValor() == ' ') && (x>=0) && (x<columnas) && (y>=0) && (y<filas)){
+		if ((x>=0) && (x<filas) && (y>=0) && (y<columnas) && (tablero[x][y].getValor() == ' ')){
 			return true;
 		}	else {
 			return false;
