@@ -5,6 +5,8 @@ import java.lang.reflect.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -33,9 +35,25 @@ public class MotorConfig
 	 
 	        //Se obtiene la lista de hijos de la raiz 'juego'
 	        List list = rootNode.getChildren( "juego" );
+	        int i = 0;
+	        int cant = list.size();
+	        int seleccion = -1;
+			java.util.Scanner scanner = new Scanner(System.in);
 
+		    System.out.println( "Listado de juegos:");
+	        while (i<cant)
+	        {
+	            Element elemento = (Element) list.get(i);
+	        	i++;
+	        	System.out.println( "("+i+") "+elemento.getAttributeValue("nombre"));
+	        }
+	        while (!(0<=seleccion&&seleccion<cant))
+	        {
+			    System.out.println( "Seleccione el número de juego:");
+				seleccion = Integer.parseInt(scanner.next())-1;
+	        }
             //Se obtiene el elemento 'tabla'
-            Element tabla = (Element) list.get(0);
+            Element tabla = (Element) list.get(seleccion);
  
             //Se obtiene el atributo 'nombre' que esta en el tag 'nombre'
             nombre = tabla.getAttributeValue("nombre");

@@ -1,3 +1,5 @@
 
 
-<motorJuegos><juego nombre="Tateti" clase="Tateti" columnas="3" filas="3"></juego></motorJuegos>
+<motorJuegos>
+	<juego nombre="4 en Linea" filas="6" columnas="7" clase="tp.juegos.CuatroEnLinea"/>
+	<juego nombre="Tateti" filas="3" columnas="3" clase="tp.juegos.Tateti"></juego></motorJuegos>

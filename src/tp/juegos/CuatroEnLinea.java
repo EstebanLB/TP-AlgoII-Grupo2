@@ -65,17 +65,6 @@ public class CuatroEnLinea extends Juego
 			}
 		}
 	}
-	
-		/*
-		boolean estaLibre=true;
-		// Valida que este dentro del tablero
-		estaLibre=(x==0);
-		if(estaLibre==true) estaLibre=(0<=y&&y<columnas);
-		// Valida si esta ocupada la casilla
-		if(estaLibre==true) estaLibre=(tablero[0][y].getValor()==' ');
-		if(estaLibre==true) this.m_ubicarFicha(ficha,y);
-		return estaLibre;
-	}*/
 
 	public void m_ubicarFicha(Ficha ficha, int y)
 	{
@@ -235,28 +224,4 @@ public class CuatroEnLinea extends Juego
 		boolean bool=(c==filas*columnas);
 		return bool;
 	}
-/*
-	@Override
-	@SuppressWarnings("resource")
-	public boolean mover(Jugador jugador)
-	{
-		System.out.println("Elija una columna del 1 al "+getColumnas());
-		int x=0;
-		java.util.Scanner scanner=new Scanner(System.in);
-		int y=scanner.nextInt()-1;
-
-		Ficha ficha=new Ficha(jugador.getValor());
-		if(validarMovimiento(ficha,x,y))
-		{
-			//posicionar(ficha,x,y);
-			System.out.println("Ficha posicionada en la columna ("+(y+1)+")");
-			return true;
-		}
-		else
-		{
-			System.out.println("Movimiento no válido, intente nuevamente");
-			return false;
-		}
-	}*/
-
 }
