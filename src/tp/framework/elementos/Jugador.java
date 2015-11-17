@@ -11,37 +11,31 @@ public class Jugador
 	private char valor = ' ';
 	private String nombre = null;
 	
-	
-	
 	public Jugador(char v, String n){
 		valor = v;
 		nombre = n;
 		ficha = new Ficha(valor);
 	}
+	public void setValor(char v){
+		valor = v;
+	}
 	public char getValor(){
 		return valor;
 	}
-	public String getNombre()
-	{
+	public String getNombre(){
 		return nombre;
 	}
-	
-	public Ficha getFicha(){
+		public Ficha getFicha(){
 		return ficha;
 	}
-
-	public void setNombre(String nombre)
-	{
+	public void setNombre(String nombre){
 		this.nombre = nombre;
 	}
-
 	public void setJuego(Juego j){
 		juego = j;
 	}
-
 	@SuppressWarnings("resource")
-	public boolean mover()
-	{
+	public boolean mover()	{
 		System.out.println( "Elija un casillero del 1 al "+juego.getFilas() );
 		System.out.print( "Columna:" );
 		java.util.Scanner scanner = new Scanner(System.in);
