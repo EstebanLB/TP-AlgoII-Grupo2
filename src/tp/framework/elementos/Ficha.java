@@ -14,10 +14,10 @@ public class Ficha
 		posicionada = false;
 	}
 	
-	public void mover(int f, int c)
+	public void mover(int fila, int columna)
 	{
-		coordF = f;
-		coordC = c;
+		coordF = fila;
+		coordC = columna;
 		posicionada = true;
 	}
 	public char getValor()

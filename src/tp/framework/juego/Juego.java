@@ -28,8 +28,8 @@ public abstract class Juego {
 	return columnas;	
 	}
 	
-	public void armarTablero(int x, int y) {
-		tablero = new Ficha[x][y];
+	public void armarTablero(int filas, int columnas) {
+		tablero = new Ficha[filas][columnas];
 	}
 	
 	public void setTablero(Ficha[][] t) {
@@ -58,11 +58,11 @@ public abstract class Juego {
 		jugador2 = j2;
 	}
 
-	public abstract boolean validarMovimiento(Ficha ficha, int x, int y);
+	public abstract boolean validarMovimiento(Ficha ficha, int fila, int columna);
 	
-	public void posicionar(Ficha ficha, int x, int y) {
-		ficha.mover(x, y);
-		tablero[x][y] = ficha;
+	public void posicionar(Ficha ficha, int fila, int columna) {
+		ficha.mover(fila, columna);
+		tablero[fila][columna] = ficha;
 	}
 	
 	public abstract boolean estaTerminado(Jugador jugador);

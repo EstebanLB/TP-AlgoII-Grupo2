@@ -18,27 +18,27 @@ public class CuatroEnLinea extends Juego
 	@Override
 	public void inicializar()
 	{
-		int i;
-		int j;
-		for(i=0; i<filas; i++)
+		int f;
+		int c;
+		for(f=0; f<filas; f++)
 		{
-			for(j=0; j<columnas; j++)
+			for(c=0; c<columnas; c++)
 			{
 				Ficha fichaNueva=new Ficha(' ');
-				tablero[i][j]=fichaNueva;
+				tablero[f][c]=fichaNueva;
 			}
 		}
 	}
 
 	public void mostrarTablero()
 	{
-		int i;
-		int j;
-		for(i=0; i<filas; i++)
+		int f;
+		int c;
+		for(f=0; f<filas; f++)
 		{
-			for(j=0; j<columnas; j++)
+			for(c=0; c<columnas; c++)
 			{
-				System.out.print("|"+tablero[i][j].getValor());
+				System.out.print("|"+tablero[f][c].getValor());
 			}
 			System.out.print("|");
 			System.out.println();
@@ -46,33 +46,26 @@ public class CuatroEnLinea extends Juego
 	}
 
 	@Override
-	public boolean validarMovimiento(Ficha ficha, int x, int y)	{
-		if ((x>=0) && (x<columnas) && (y>=0) && (y<filas) && (tablero[0][y].getValor() == ' ')){
+	public boolean validarMovimiento(Ficha ficha, int fila, int columna)
+	{
+		if((fila>=0)&&(fila<filas)&&(columna>=0)&&(columna<columnas)&&(tablero[0][columna].getValor()==' '))
+		{
 			return true;
-		}	else {
+		}
+		else
+		{
 			return false;
 		}
 	}
-	
-	public void posicionar(Ficha ficha, int x, int y) {
-		for(int i=filas-1; i>=0; i--)
-		{
-			if(tablero[i][y].getValor()==' ')
-			{
-				ficha.mover(i, y);
-				tablero[i][y] = ficha;
-				break;
-			}
-		}
-	}
 
-	public void m_ubicarFicha(Ficha ficha, int y)
+	public void posicionar(Ficha ficha, int fila, int columna)
 	{
-		for(int i=filas-1; i>=0; i--)
+		for(int f=filas-1; f>=0; f--)
 		{
-			if(tablero[i][y].getValor()==' ')
+			if(tablero[f][columna].getValor()==' ')
 			{
-				tablero[i][y].setValor(ficha.getValor());
+				ficha.mover(f,columna);
+				tablero[f][columna]=ficha;
 				break;
 			}
 		}
@@ -81,7 +74,7 @@ public class CuatroEnLinea extends Juego
 	public boolean m_finalizado(Ficha tablero[][], char valorFicha)
 	{
 		boolean fin=false;
-		String fila="";
+		String lineaStr="";
 		String subCadena="";
 		for(int l=0; l<4; l++)
 		{
@@ -89,124 +82,104 @@ public class CuatroEnLinea extends Juego
 		}
 
 		// Recorro filas
-		int k=0;
-		int l=0;
-		for(int i=filas-1; i>=0; i--)
+		int fAux=0;
+		int cAux=0;
+		for(int f=filas-1; f>=0; f--)
 		{
-			fila="";
-			for(int j=0; j<columnas; j++)
+			lineaStr="";
+			for(int c=0; c<columnas; c++)
 			{
-				fila=fila+tablero[i][j].getValor();
+				lineaStr=lineaStr+tablero[f][c].getValor();
 			}
-			fin=fila.contains(subCadena);
+			fin=lineaStr.contains(subCadena);
 			if(fin==true) break;
 		}
 		if(fin==true) return fin;
 
 		// Recorro columnas
-		for(int j=0; j<columnas; j++)
+		for(int c=0; c<columnas; c++)
 		{
-			fila="";
-			for(int i=filas-1; i>=0; i--)
+			lineaStr="";
+			for(int f=filas-1; f>=0; f--)
 			{
-				fila=fila+tablero[i][j].getValor();
+				lineaStr=lineaStr+tablero[f][c].getValor();
 			}
-			fin=fila.contains(subCadena);
+			fin=lineaStr.contains(subCadena);
 			if(fin==true) break;
 		}
 		if(fin==true) return fin;
 
 		// Diagonales '\' recorriendo la primera fila de izq a der
-		for(int i=0; i<columnas; i++)
+		for(int c=0; c<columnas; c++)
 		{
-			k=0;
-			l=i;
-			fila="";
-			while(k<filas&&l<columnas&&k>=0&&l>=0)
+			fAux=0;
+			cAux=c;
+			lineaStr="";
+			while(fAux<filas&&cAux<columnas&&fAux>=0&&cAux>=0)
 			{
-				fila=fila+tablero[k][l].getValor();
-				k++;
-				l++;
+				lineaStr=lineaStr+tablero[fAux][cAux].getValor();
+				fAux++;
+				cAux++;
 			}
-			fin=fila.contains(subCadena);
+			fin=lineaStr.contains(subCadena);
 			if(fin==true) break;
-			if(fila.length()<=4) break;
+			if(lineaStr.length()<=4) break;
 		}
 		if(fin==true) return fin;
 
 		// Diagonales '\' recorriendo la primera columna de arr a abj
-		for(int i=1; i<filas; i++)
+		for(int f=1; f<filas; f++)
 		{
-			k=i;
-			l=0;
-			fila="";
-			while(k<filas&&l<columnas&&k>=0&&l>=0)
+			fAux=f;
+			cAux=0;
+			lineaStr="";
+			while(fAux<filas&&cAux<columnas&&fAux>=0&&cAux>=0)
 			{
-				fila=fila+tablero[k][l].getValor();
-				k++;
-				l++;
+				lineaStr=lineaStr+tablero[fAux][cAux].getValor();
+				fAux++;
+				cAux++;
 			}
-			fin=fila.contains(subCadena);
+			fin=lineaStr.contains(subCadena);
 			if(fin==true) break;
-			if(fila.length()<=4) break;
+			if(lineaStr.length()<=4) break;
 		}
 		if(fin==true) return fin;
 
 		// Diagonales '/' recorriendo la primera fila de der a izq
-		for(int i=0; i<columnas; i++)
+		for(int c=0; c<columnas; c++)
 		{
-			k=0;
-			l=columnas-1-i;
-			fila="";
-			while(k<filas&&l<columnas&&k>=0&&l>=0)
+			fAux=0;
+			cAux=columnas-1-c;
+			lineaStr="";
+			while(fAux<filas&&cAux<columnas&&fAux>=0&&cAux>=0)
 			{
-				fila=fila+tablero[k][l].getValor();
-				k++;
-				l--;
+				lineaStr=lineaStr+tablero[fAux][cAux].getValor();
+				fAux++;
+				cAux--;
 			}
-			fin=fila.contains(subCadena);
+			fin=lineaStr.contains(subCadena);
 			if(fin==true) break;
-			if(fila.length()<=4) break;
+			if(lineaStr.length()<=4) break;
 		}
 		if(fin==true) return fin;
 
 		// Diagonales '/' recorriendo la primera columna
-		for(int i=1; i<filas; i++)
+		for(int f=1; f<filas; f++)
 		{
-			k=i;
-			l=columnas-1;
-			fila="";
-			while(k<filas&&l<columnas&&k>=0&&l>=0)
+			fAux=f;
+			cAux=columnas-1;
+			lineaStr="";
+			while(fAux<filas&&cAux<columnas&&fAux>=0&&cAux>=0)
 			{
-				fila=fila+tablero[k][l].getValor();
-				k++;
-				l--;
+				lineaStr=lineaStr+tablero[fAux][cAux].getValor();
+				fAux++;
+				cAux--;
 			}
-			fin=fila.contains(subCadena);
+			fin=lineaStr.contains(subCadena);
 			if(fin==true) break;
-			if(fila.length()<=4) break;
+			if(lineaStr.length()<=4) break;
 		}
 		if(fin==true) return fin;
-		return fin;
-	}
-
-	public boolean m_tablero_completo()
-	{
-		boolean fin=true;
-		int i;
-		int j;
-		for(i=0; i<6; i++)
-		{
-			for(j=0; j<7; j++)
-			{
-				if(tablero[i][j].getValor()==' ')
-				{
-					fin=false;
-				}
-				if(fin==false) break;
-			}
-			if(fin==false) break;
-		}
 		return fin;
 	}
 
