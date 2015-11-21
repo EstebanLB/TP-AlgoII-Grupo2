@@ -13,7 +13,7 @@ public class Motor
 	{
 		Jugador jug1=null;
 		Jugador jug2=null;
-
+		int fin = 0;
 		try
 		{
 			Juego juego=MotorConfig.obtenerJuego();
@@ -56,7 +56,7 @@ public class Motor
 			juego.mostrarTablero();
 			int cont=0;
 
-			while(!juego.estaTerminado(anteriorJugador)&&!juego.estaEmpatado(cont))
+			while(fin == 0)
 			{
 				System.out.println("Turno de "+jugadorJugando.getNombre()+"("+jugadorJugando.getValor()+")");
 				while(!jugadorJugando.mover())
@@ -66,17 +66,22 @@ public class Motor
 				jugAux=jugadorJugando;
 				jugadorJugando=anteriorJugador;
 				anteriorJugador=jugAux;
-
+				if (juego.estaTerminado(anteriorJugador))
+				  fin = 1;
+				else
+				{
+					if (juego.estaEmpatado(cont))
+					fin = 2;
+				}
 			}
-			if(juego.estaEmpatado(cont))
+			if(fin == 1)
 			{
-				System.out.println("Juego terminado en empate");
+				System.out.println("Juego terminado. GanÃ³ "+anteriorJugador.getNombre());
 			}
 			else
 			{
-				System.out.println("Juego terminado. Ganó "+anteriorJugador.getNombre());
+				System.out.println("Juego terminado en empate");
 			}
-
 		}
 		catch(RuntimeException ex)
 		{
